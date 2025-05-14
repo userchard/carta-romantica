@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nossa Carta de Amor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="retro-btn principal-btn" id="abrirBtn" onclick="abrirCarta()">💌 Abrir Carta</button>
+
+  <div class="carta-container" id="cartaContainer">
+    <div class="carta" id="carta">
+      <button class="retro-btn" onclick="toggleMusica()">🎵 Tocar/Pausar Música</button>
+
+      <p>Meu amor,</p>
+
+      <p>Hoje a gente completa 3 anos juntos. 3 anos de risos, de momentos bobos e também de desafios. Sei que estamos passando por um momento meio complicado, entre tempo curto, rotina puxada, faculdade, trabalho... Mas no meio disso tudo, você continua sendo minha paz.</p>
+
+      <p>Eu nunca vou esquecer do nosso primeiro encontro — naquela pista de skate, jogando cartas como se fosse um filme adolescente. Eu tava tão nervoso, sem saber onde colocar as mãos, porque desde ali, eu já sabia que tinha algo forte por você.</p>
+
+      <p>E quando te disse aquele primeiro “eu te amo”, lá na sua casa, minutos antes de ir embora... parecia que o tempo parava. Tinha um peso bom, sabe? Como se eu finalmente tivesse dito algo que tava guardado há muito tempo.</p>
+
+      <p>Teve nossa primeira viagem, lembra? Sorocaba, seu aniversário, o zoológico... e aquele macaco andando “de ré”, que até hoje me faz rir quando lembro. Depois o shopping, o café do Starbucks, os passeios sem rumo com você ao meu lado e o mundo inteiro fazendo sentido.</p>
+
+      <p>Sei que nem sempre é fácil. Mas quero que saiba que você é parte do que me faz ser quem eu sou. E mesmo que às vezes falte tempo, nunca falta amor.</p>
+
+      <p>Feliz 3 anos. Ainda temos muita história pra escrever.</p>
+
+      <p>Com todo meu amor,<br>Richard.</p>
+
+      <button class="retro-btn" onclick="fecharCarta()">📪 Fechar Carta</button>
+    </div>
+  </div>
+
+  <img id="foto-quadro" src="https://via.placeholder.com/500x350.png?text=Sua+Foto+Aparece+AQUI" alt="Foto nossa juntos" />
+
+  <audio id="musica" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
