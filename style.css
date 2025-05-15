@@ -38,8 +38,6 @@ body {
 
 .carta {
   max-width: 700px;
-  max-height: 90vh;
-  overflow-y: auto;
   background: #fffdf7;
   padding: 40px;
   border-radius: 12px;
