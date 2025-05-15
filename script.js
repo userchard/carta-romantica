@@ -5,11 +5,14 @@ const fotoQuadro = document.getElementById('foto-quadro');
 const abrirBtn = document.getElementById('abrirBtn');
 
 function abrirCarta() {
-  cartaContainer.style.display = 'block';
-  cartaContainer.classList.remove('fechando');
-  cartaContainer.classList.add('abrindo');
-  carta.scrollTop = 0;
-  abrirBtn.style.display = 'none';
+  cartaContainer.style.display = 'flex';
+  setTimeout(() => {
+    cartaContainer.classList.remove('fechando');
+    cartaContainer.classList.add('abrindo');
+    carta.scrollTop = 0;
+    abrirBtn.style.display = 'none';
+    fotoQuadro.classList.remove('mostrar'); // Esconde a imagem suavemente
+  }, 10);
 }
 
 function fecharCarta() {
@@ -19,9 +22,9 @@ function fecharCarta() {
   setTimeout(() => {
     cartaContainer.style.display = 'none';
     abrirBtn.style.display = 'inline-block';
-    fotoQuadro.style.display = 'block';
+    fotoQuadro.classList.add('mostrar'); // Mostra a imagem suavemente
     fotoQuadro.scrollIntoView({ behavior: 'smooth' });
-  }, 1000);
+  }, 700); // igual ao tempo da transição
 }
 
 function toggleMusica() {
