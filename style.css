@@ -1,60 +1,144 @@
+/* ...existing code... */
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   font-family: 'Georgia', serif;
-  background: url('https://www.transparenttextures.com/patterns/paper-fibers.png'), #f5f2e9;
-  background-size: contain;
+  background: linear-gradient(135deg, #f5e9d7 0%, #e9d8c3 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.retro-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: 2px solid #7a5c3c;
-  border-radius: 8px;
-  background-color: #e4d5b7;
-  color: #4d3b28;
-  font-family: 'Courier New', Courier, monospace;
-  cursor: pointer;
-  box-shadow: inset 0 -2px 0 #c7b299;
-  transition: all 0.2s ease;
-}
-
-.retro-btn:hover {
-  background-color: #d3c4a7;
-  transform: scale(1.02);
+  justify-content: center;
 }
 
 .carta-container {
   display: none;
-  position: relative;
-  height: auto;
-  overflow-y: hidden;
-  padding: 20px;
-  perspective: 1500px;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(245, 242, 233, 0.85);
+  z-index: 10;
+  align-items: flex-start; /* Alinha no topo */
+  justify-content: center;
+  padding-top: 40px;       /* Espaço do topo */
+  padding-bottom: 40px;    /* Espaço embaixo para rolar */
+    padding-left: 20px;      /* Espaço da esquerda */
+    padding-right: 20px;     /* Espaço da direita */
+  overflow-y: auto;
+  transition: backdrop-filter 0.6s, background 0.6s;
+  backdrop-filter: blur(0px);
+}
+
+.carta-container.abrindo {
+  backdrop-filter: blur(4px);
+  background: rgba(245, 242, 233, 0.92);
+}
+
+.carta-container.fechando {
+  backdrop-filter: blur(0px);
+  background: rgba(245, 242, 233, 0.85);
 }
 
 .carta {
   max-width: 700px;
-  background: #fffdf7;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  transform-origin: top;
-  opacity: 0;
+  background: #fffdf7 url('https://www.transparenttextures.com/patterns/old-mathematics.png');
+  padding: 48px 36px 36px 36px;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18), 0 1.5px 0 #e0c9a6;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
+  border: 2.5px solid #e0c9a6;
+  font-family: 'Dancing Script', 'Georgia', serif;
+  font-size: 1.18rem;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(.4,1.6,.4,1), transform 0.7s cubic-bezier(.4,1.6,.4,1), box-shadow 0.3s;
+}
+
+.carta:hover {
+  box-shadow: 0 16px 60px rgba(0,0,0,0.22), 0 2px 0 #e0c9a6;
+}
+
+.carta p {
+  margin: 0 0 12px 0;
+  line-height: 1.7;
+}
+
+.carta p:first-child {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #7a5c3c;
+}
+
+.carta p:last-child {
+  text-align: right;
+  font-style: italic;
+}
+
+.retro-btn {
+  padding: 12px 28px;
+  font-size: 18px;
+  border: 2px solid #7a5c3c;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #e4d5b7 80%, #f5e9d7 100%);
+  color: #4d3b28;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+  box-shadow: 0 2px 0 #c7b299;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+}
+
+.retro-btn:hover {
+  background: #d3c4a7;
+  transform: scale(1.04);
+  color: #7a5c3c;
+}
+
+.principal-btn {
+  margin-top: 60px;
+  font-size: 22px;
+  padding: 18px 36px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #f5e9d7 80%, #e4d5b7 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+#foto-quadro {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.7s cubic-bezier(.4,1.6,.4,1), transform 0.7s cubic-bezier(.4,1.6,.4,1);
+  margin-top: 48px;
+  border: 12px solid #c6b28d;
+  padding: 8px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  max-width: 92%;
+  background: #fffbe9;
+  display: block;
+  pointer-events: none;
+}
+
+#foto-quadro.mostrar {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+audio {
+  width: 100%;
+  margin-top: 18px;
 }
 
 .abrindo .carta {
-  animation: abrirTampa 1s forwards;
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .fechando .carta {
-  animation: fecharTampaSuave 1s forwards;
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
 }
 
 @keyframes abrirTampa {
@@ -65,22 +149,4 @@ body {
 @keyframes fecharTampaSuave {
   from { transform: rotateX(0deg); opacity: 1; }
   to { transform: rotateX(90deg); opacity: 0; }
-}
-
-#foto-quadro {
-  display: none;
-  margin-top: 40px;
-  border: 10px solid #c6b28d;
-  padding: 6px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  max-width: 90%;
-}
-
-audio {
-  width: 100%;
-}
-
-.principal-btn {
-  margin-top: 40px;
 }
