@@ -1,49 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nossa Carta de Amor</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <button class="retro-btn principal-btn" id="abrirBtn" onclick="abrirCarta()">💌 Abrir Carta</button>
+const cartaContainer = document.getElementById('cartaContainer');
+const carta = document.getElementById('carta');
+const musica = document.getElementById('musica');
+const fotoQuadro = document.getElementById('foto-quadro');
+const abrirBtn = document.getElementById('abrirBtn');
 
-  <div class="carta-container" id="cartaContainer">
-    <div class="carta" id="carta">
-      <button class="retro-btn" onclick="toggleMusica()">🎵 Tocar/Pausar Música</button>
+function abrirCarta() {
+  cartaContainer.style.display = 'flex';
+  setTimeout(() => {
+    cartaContainer.classList.remove('fechando');
+    cartaContainer.classList.add('abrindo');
+    carta.scrollTop = 0;
+    abrirBtn.style.display = 'none';
+    fotoQuadro.classList.remove('mostrar'); // Esconde a imagem suavemente
+  }, 10);
+}
 
-      <p>Meu amor,</p>
+function fecharCarta() {
+  cartaContainer.classList.remove('abrindo');
+  cartaContainer.classList.add('fechando');
+  musica.pause();
+  setTimeout(() => {
+    cartaContainer.style.display = 'none';
+    abrirBtn.style.display = 'inline-block';
+    fotoQuadro.classList.add('mostrar'); // Mostra a imagem suavemente
+    fotoQuadro.scrollIntoView({ behavior: 'smooth' });
+  }, 700); // igual ao tempo da transição
+}
 
-      <p>Três anos. Caraca… já? Passou voando. E mesmo assim, tem hora que eu fico aqui sem saber como colocar tudo que eu sinto por você em palavras. Muita coisa que a gente viveu, muita coisa que ainda quero viver contigo. E mesmo agora, com a gente passando por essa fase meio complicada com o tempo apertado, umas discussões/conversas, uns desencontros.. queria que você soubesse que nada disso muda o que eu sinto por você. Nada apaga. O que eu sinto é maior que qualquer coisa.</p>
-
-      <p>Desde aquele primeiro encontro na pista de skate, eu nervoso, sem saber onde enfiar a cara, jogando baralho só pra não ficar te encarando que nem um bobo apaixonado já. Eu já sentia que tinha algo diferente em você, que você era especial e perfeita demais para deixar ir embora. Algo me fazia querer ficar com você. E olha só… fiquei. E estou muitoo feliz por isso.</p>
-
-      <p>E como esquecer nosso primeiro beijo? na quadra da escola, todo sem jeito kkkkk. A Bia e o Deivid fizeram aquela aposta: se eu errasse a cesta, teria que te dar um beijo. Você aceitou. Eu errei (mas eu tinha entendido que era se eu acertasse kkkkk) e a gente deu aquele celinho, todo tímido, meio envergonhado, mas… foi muito especial pra mim.</p>
-
-      <p>A gente passou por bastante coisa nesse tempo. Lembra daquela viagem com a escola, no parque aquático? A gente ainda tava no comecinho do namoro… e, acabamos brigando por uma besteira. Você saiu com a Bia e o Deivid da corrente de água que ficava em circulo, eu acabei te perdendo de vista, e aí acabei ficando com a galera junto ao Vitão. E daí pronto, a gente passou quase a viagem toda separado. Nem eu fui atrás, nem você. Coisa de orgulho besta, né. Mas eu queria aproveitar esse momento aqui pra te pedir desculpa. De verdade. Eu devia ter ido atrás de você, ter te chamado, ter resolvido ali mesmo. Mas foi um vacilo, imaturidade e enfim, me arrependo muito. Desculpa mesmo.</p>
-
-      <p>Teve também aquele dia na sua casa, aquele “eu te amo” que saiu meio do nada, mas totalmente sincero, depois de um abraço que eu não queria largar. Lembro até hoje da sua cara depois kkkkkk, o silêncio que veio… é engraçado agora, mas também foi real. Senti de verdade.</p>
-
-      <p>E nossa viagem só nós dois? Inesquecível. O zoológico, o macaco andando de ré (até hoje eu rio disso kkkk), a gente se divertindo feito duas crianças. Depois o shopping e aquele café do Starbucks que nem precisava estar bom, só de estar contigo, o momento já era perfeito.</p>
-
-      <p>Mesmo com as tretas, com os dias difíceis, eu continuo aqui. Amando você do mesmo jeito, até mais. Sei que não sou mais aquele cara nervoso da pista de skate, mas ainda continuo apaixonado, grato e mais certo de que quero continuar vivendo tudo isso com você.</p>
-
-      <p>Obrigado por esses três anos. Por ser minha parceira, minha melhor amiga, meu amorzão.</p>
-
-      <p>Te amo demais, mozão. E vamo junto, sempre. <3</p>
-
-      <p>Com todo meu amor,<br>Richard.</p>
-
-      <button class="retro-btn" onclick="fecharCarta()">📪 Fechar Carta</button>
-    </div>
-  </div>
-
-  <img id="foto-quadro" src="IMG_1055.jpg" alt="Foto nossa juntos" />
-
-  <audio id="musica" src="acousticbreeze.mp3"></audio>
-
-  <script src="script.js"></script>
-</body>
-</html>
+function toggleMusica() {
+  if (musica.paused) {
+    musica.play();
+  } else {
+    musica.pause();
+  }
+}
